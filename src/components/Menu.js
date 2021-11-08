@@ -73,10 +73,12 @@ class Menu extends Component{
         return(
             
             <NavigationContainer>
-            
+           
                 <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>
                  <Register register={(email, pass) => this.register(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode} />
-              
+                
+                 <Home/>
+                 <MiPerfil logout={()=> this.logout()} user={this.state.user} />
             </NavigationContainer> 
 
 
