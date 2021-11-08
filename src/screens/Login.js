@@ -29,7 +29,7 @@ class Login extends Component{
            <TextInput 
            style={styles.input}
            keyboardType='default'
-           placeholder='password'
+           placeholder='contraseña'
            secureTextEntry={true}
            onChangeText={ text => this.setState({password: text})}
            />
