@@ -17,8 +17,8 @@ class Login extends Component{
  render(){
      return (
         <View style={styles.page}>
-       <View styles={ styles.container}>
-           <Text styles={styles.title} >Login </Text>
+       <View style={ styles.container}>
+           <Text style={styles.title} >Login </Text>
            <TextInput 
            style={styles.input}
            keyboardType='email-address'
