@@ -6,8 +6,9 @@ class Perfil extends Component{
     constructor(props){
         super(props);
         this.state={
-            user: this.props.user
-
+            user: this.props.user,
+            email: this.props.email,
+           password:this.props.password,
         }
        
     } 
@@ -15,9 +16,10 @@ class Perfil extends Component{
     render(){
         return(
            <View>
-            <Text>Email registrado: {this.props.userData.email} </Text>
+            <Text>Nombre de Usuario: {this.props.user.user} </Text>
             <Text>Usuario creado el: {this.props.userData.metadata.creationTime} </Text>
             <Text>Ultimo ingreso: {this.props.userData.metadata.lastSignInTime} </Text>
+            
             <TouchableOpacity  style={styles.enter} onPress={()=> this.props.logout(this.state.email, this.state.password)  }>
               <Text style={styles.texto}>
         Logout
@@ -25,6 +27,9 @@ class Perfil extends Component{
         </TouchableOpacity>  
   
         </View>
+//cantidad de posteos de ese usuario
+//todos los posteos cargos por el usuario
+//permitir borrar los posteos
 
 )
 
