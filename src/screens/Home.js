@@ -31,7 +31,7 @@ componentDidMount() {
 }
 render (){
     return(
-        <View styles={styles.container}>
+        <View style={styles.container}>
 <FlatList
 data={this.state.posteos}
 keyExtractor={post => post.id}
