@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-
+import {Text, TouchableOpacity, View, TextInput} from 'react-native';
+import {StyleSheet} from 'react-native'
 class Login extends Component{
     constructor(props){
         super(props);
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
         borderColor:"#ccc"
 
     }
+
 })
 export default Login
 
