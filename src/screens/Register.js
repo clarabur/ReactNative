@@ -35,7 +35,9 @@ class Register extends Component{
                     onChangeText={text => this.setState({password:text})}
                 />
                 { this.state.user === "" || this.state.email === "" || this.state.password === "" ?
-                <Text></Text>:
+                <TouchableOpacity style={styles.buttonUnable} >
+                <Text style={styles.textButton}>Registrate</Text>
+                </TouchableOpacity>:
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)}>
                     <Text style={styles.textButton}>Registrate</Text>
                 </TouchableOpacity>
@@ -93,6 +95,16 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color:'white'
+    },
+    buttonUnable:{
+        backgroundColor:"#9DCFFC",
+        paddingHorizontal:10,
+        paddingVertical:6,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc"
+
     }
 })
 
