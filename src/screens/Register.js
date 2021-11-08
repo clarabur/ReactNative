@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Text, View, TouchableOpacity, TextInput} from "react-native"
-
+import {StyleSheet} from 'react-native'
 
 class Register extends Component{
     constructor(props){
@@ -15,19 +15,20 @@ class Register extends Component{
 
     render(){
         return(
-            <View>
-                <Text>Registracion</Text>
-                <TextInput
+            <View style={styles.page}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Registración</Text>
+                <TextInput style={styles.input}
                     keyboardType='default'
                     placeholder='nombre de usuario'
                     onChangeText={text => this.setState({user:text})}
                 />
-                 <TextInput
+                 <TextInput style={styles.input}
                     keyboardType='email-address'
                     placeholder='email'
                     onChangeText={text => this.setState({email:text})}
                 />
-                 <TextInput
+                 <TextInput style={styles.input}
                     keyboardType='default'
                     placeholder='contraseña'
                     secureTextEntry={true}
@@ -35,13 +36,64 @@ class Register extends Component{
                 />
                 { this.state.user === "" || this.state.email === "" || this.state.password === "" ?
                 <Text></Text>:
-                <TouchableOpacity onPress={()=>this.props.register(this.state.email, this.state.password)}>
-                    <Text>Registrate</Text>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)}>
+                    <Text style={styles.textButton}>Registrate</Text>
                 </TouchableOpacity>
                 }
+            </View>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    page:{
+        backgroundColor:"#EEECEC",
+        flex:1
+
+    },
+    title:{
+        textAlign:'center',
+        fontFamily:'Comic Sans',
+        fontSize:"x-large",
+        color:'#5B88FA'
+    },
+    container:{
+        paddingHorizontal:10,
+        marginTop:20,
+        borderColor:"#ccc",
+        backgroundColor:'white',
+        borderStyle:'solid',
+        flex:2,
+        justifyContent:'center',
+        alignContent:'center',
+        marginHorizontal:'25%',
+        borderWidth:1,
+        marginBottom:20
+     
+    },
+    input:{
+        height:20,
+        paddingVertical:15,
+        paddingHorizontal:10,
+        borderWidth:1,
+        borderColor:"#ccc",
+        borderStyle:"solid",
+        borderRadius:6,
+        marginVertical:10,
+        backgroundColor:'#EEECEC'
+    },
+    button:{
+        backgroundColor:"#5B88FA",
+        paddingHorizontal:10,
+        paddingVertical:6,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc"
+    },
+    textButton:{
+        color:'white'
+    }
+})
 
 export default Register
