@@ -6,6 +6,7 @@ import Register from "../screens/Register";
 import Login from "../screens/Login";
 import Home from '../screens/Home'
 import Perfil from "../screens/Perfil";
+import Buscador from "../screens/Buscador";
 
 const Drawer = createDrawerNavigator();
 class Menu extends Component{
@@ -73,14 +74,13 @@ class Menu extends Component{
     render(){
         return(
             
-            <NavigationContainer>
-           
+            <React.Fragment>
                 <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>
                  <Register register={(email, pass) => this.register(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode} />
-                
                  <Home/>
                  <Perfil logout={()=> this.logout()} user={this.state.user} />
-            </NavigationContainer> 
+                 <Buscador/>
+            </React.Fragment> 
 
 
            

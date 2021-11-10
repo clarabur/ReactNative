@@ -5,8 +5,8 @@ import {auth, db} from '../firebase/config'
 
 
 class Home extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state={
            posteos: [],
         }
