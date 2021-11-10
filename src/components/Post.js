@@ -10,16 +10,48 @@ class Post extends Component{
            
            showModal: false, //vista del modal
            comment: '', //para limpiar el campo despues de enviar
+           likes: 0,
+           myLike: false
         }
     }
-
-
-    showModal(){
-        this.setState({
-            showModal: true,
-        
+    componentDidMount(){
+        if(this.props.postData.data.likes){
+            this.setState({
+                likes: this.props.postData.data.likes.length,
+                myLike: this.props.postData.data.likes.includes(auth.currentUser.email)
+            })
+        }
+    }
+    likear(){
+        db.collection("posts").doc(this.props.postData.id).update({
+            likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
+        })
+        .then(()=>{
+            this.setState({
+                likes: this.state.likes + 1,
+                myLike: true
+            })
         })
     }
+    desLikear(){
+        db.collection("posts").doc(this.props.postData.data.id).update({
+            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser/email)
+        })
+        .then(()=>{
+            this.setState({
+                likes: this.state.likes - 1,
+                myLike: false
+            })
+        })
+    }
+
+
+showModal(){
+    this.setState({
+        showModal: true,
+        
+    })
+}
 hideModal(){
     this.setState({
         showModal: false,
@@ -52,12 +84,17 @@ render(){
         <View style={styles.contanier}>
         <Text>Texto del post: {this.props.postData.data.texto}</Text>
         <Text>user: {this.props.postData.data.owner} </Text>  
-        <Text>Likes:{this.state.likes} </Text> 
+        <Text>Likes: {this.s}</Text>
+        {
+            this.state.myLike == false ?
+            <TouchableOpacity onPress={()=> this.likear()}>
+                <Text>Like</Text>
+            </TouchableOpacity> :
 
-        <Text>Like</Text>
-        <Text>Quirar Like</Text>
-
-
+            <TouchableOpacity onPress={()=>this.desLikear()}>
+                <Text>Unlike</Text>
+            </TouchableOpacity>
+        }
         <TouchableOpacity onPress={()=> this.showModal()}> 
     <Text> Ver comentarios</Text>
 </TouchableOpacity>
