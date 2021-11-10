@@ -16,10 +16,7 @@ class Perfil extends Component{
     render(){
         return(
            <View>
-            <Text>Nombre de Usuario: {this.props.user.user} </Text>
-            <Text>Usuario creado el: {this.props.user.metadata.creationTime} </Text>
-            <Text>Ultimo ingreso: {this.props.user.metadata.lastSignInTime} </Text>
-            
+           
             <TouchableOpacity  style={styles.enter} onPress={()=> this.props.logout(this.state.email, this.state.password)  }>
               <Text style={styles.texto}>
         Logout

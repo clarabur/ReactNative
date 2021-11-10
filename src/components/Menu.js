@@ -5,6 +5,7 @@ import {auth} from "../firebase/config"
 import Register from "../screens/Register";
 import Login from "../screens/Login";
 import Home from '../screens/Home'
+import Perfil from "../screens/Perfil";
 
 const Drawer = createDrawerNavigator();
 class Menu extends Component{
@@ -78,7 +79,7 @@ class Menu extends Component{
                  <Register register={(email, pass) => this.register(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode} />
                 
                  <Home/>
-                 <MiPerfil logout={()=> this.logout()} user={this.state.user} />
+                 <Perfil logout={()=> this.logout()} user={this.state.user} />
             </NavigationContainer> 
 
 
