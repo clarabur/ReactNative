@@ -61,49 +61,10 @@ render(){
                 <Text>Unlike</Text>
             </TouchableOpacity>
         }
-        <TouchableOpacity onPress={()=> this.showModal()}> 
-    <Text> Ver comentarios</Text>
-</TouchableOpacity>
+      
 
 
-{ this.state.showModal ?
-    <Modal
-    style={styles.modalConteiner}
-    visible= {this.state.showModal}
-    animationType= 'slide'
-    transparent={false}
-    >
-<TouchableOpacity onPress={()=> this.hideModal()}> 
-    <Text style={styles.cruz}> X</Text>
-</TouchableOpacity>  
 
-<FlatList
-   data={this.props.postData.data.comments}
-   keyExtractor={(comment)=>comment.createdAt.toString()}
-   renderItem={({item})=> <Text>{item.author}: {item.comment}</Text>}  
-/>
-
-<View>
-    <TextInput 
-    style={styles.input}
-    placeholder="Comentar..."
-    keyboardType= 'default'
-    multiline
-    onChangeText={text => this.setState({comment: text})}
-    value={this.state.comment}
-    />
-<TouchableOpacity 
-  style={styles.boton}
-onPress={()=> this.guardarComentario()}>
-<Text style={styles.texto}> Guardar Comentario</Text>
-</TouchableOpacity>
-
-</View>
-
-    </Modal>  :
-    <Text></Text>
-
-}
         </View>
  )   
 }
