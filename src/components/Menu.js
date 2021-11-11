@@ -17,7 +17,6 @@ class Menu extends Component{
             user: "",
             errorMessage: '',
             errorCode:'',
-            
         }
     }
     componentDidMount(){
@@ -26,11 +25,8 @@ class Menu extends Component{
                 this.setState({
                     loggedIn: true,
                     user: user
-                    
                 })
-
             }
-            
         })
     }
     register(email, pass){
@@ -42,7 +38,6 @@ class Menu extends Component{
         })
         .catch(error => console.log(error))
     }
-
     login(email, pass){
         auth.signInWithEmailAndPassword(email, pass)
         .then((response) => {
@@ -60,8 +55,6 @@ class Menu extends Component{
           })
         })
     }
-
-
     logout(){
         auth.signOut()
         .then(()=> {
@@ -73,17 +66,24 @@ class Menu extends Component{
     }  
     render(){
         return(
-            
-            <React.Fragment>
-                <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>
-                 <Register register={(email, pass) => this.register(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode} />
-                 <Home/>
-                 <Perfil logout={()=> this.logout()} user={this.state.user} />
-                 <Buscador/>
-            </React.Fragment> 
+            <NavigationContainer>
+                
+                <Drawer.Navigator>
+                    {this.state.loggedIn == false ?
+                    <React.Fragment>
+                        <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>} />
+                        <Drawer.Screen name='Registro' component={() => <Register register={(email, pass) => this.register(email, pass)}/>} />
+                    </React.Fragment>
+                    :
+                    <React.Fragment>
+                        <Drawer.Screen name='Home' component={() => <Home />} />
+                        <Drawer.Screen name='Perfil' component={() => <Perfil logout={()=> this.logout()} user={this.state.user}/>} />
+                        <Drawer.Screen name='Buscador' component={() => <Buscador />} />
+                    </React.Fragment>
+                    }
+                </Drawer.Navigator>
 
-
-           
+            </NavigationContainer>
         )
     }
 }
