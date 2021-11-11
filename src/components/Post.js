@@ -54,12 +54,12 @@ render(){
         <Text>Likes: {this.state.likes}</Text>
         {
             this.state.myLike === false ?
-            <TouchableOpacity onPress={()=> this.likear()}>
-                <Text>Like</Text>
+            <TouchableOpacity style={styles.likeButton} onPress={()=> this.likear()}>
+                <Text styles={styles.textButton}>Like</Text>
             </TouchableOpacity> :
 
-            <TouchableOpacity onPress={()=>this.desLikear()}>
-                <Text>Unlike</Text>
+            <TouchableOpacity style={styles.likeButton} onPress={()=>this.desLikear()}>
+                <Text styles={styles.textButton}>Unlike</Text>
             </TouchableOpacity>
         }
       
@@ -78,7 +78,19 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
     },
-    
+    likeButton:{
+        backgroundColor:"#F05B5B",
+        paddingHorizontal:10,
+        paddingVertical:6,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc",
+        width:'25%'
+    },
+    textButton:{
+        color:'white'
+    },
   
 
 })
