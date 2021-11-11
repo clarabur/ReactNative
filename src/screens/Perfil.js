@@ -19,7 +19,7 @@ class Perfil extends Component{
     componentDidMount() {
         db.collection('posts')
         .where ('owner', '==', this.props.user.email)
-        .orderBy('createdAt','asc')
+        .orderBy('createdAt','desc')
         .onSnapshot(
             docs => {
                 let post = []
