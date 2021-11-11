@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Text, View, TouchableOpacity, TextInput, FlatList} from "react-native"
 import {StyleSheet} from 'react-native'
 import Post from "../components/Post";
-import {db} from '../firebase/config'
+import {db, auth} from '../firebase/config'
 
 class Register extends Component{
     constructor(){
@@ -15,7 +15,7 @@ class Register extends Component{
         }
     }
     buscar(){
-        db.collection('post').where('user', '==', this.state.search).orderBy('createdAt', 'asc').onSnapshot(
+        db.collection('posts').where('owner', '==', this.state.search).orderBy('createdAt', 'asc').onSnapshot(
             docs => {
                 let post = []
                 docs.forEach(doc => {
@@ -27,13 +27,12 @@ class Register extends Component{
                 console.log(post)
     
                 this.setState({
-                    posteos: post
+                    posteos: post,
+                    resultados: true
                 })
             }
         )
-        this.setState({
-            resultados: true
-        })
+        
         
         
 
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
         borderColor:"#ccc",
         backgroundColor:'white',
         borderStyle:'solid',
-        flex:1,
+        flex:2,
         justifyContent:'center',
         alignContent:'center',
         marginHorizontal:'25%',

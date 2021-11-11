@@ -7,6 +7,7 @@ import Login from "../screens/Login";
 import Home from '../screens/Home'
 import Perfil from "../screens/Perfil";
 import Buscador from "../screens/Buscador";
+import PostForm from "../screens/postForm";
 
 const Drawer = createDrawerNavigator();
 class Menu extends Component{
@@ -16,7 +17,7 @@ class Menu extends Component{
             loggedIn: false,
             user: "",
             errorMessage: '',
-            errorCode:'',
+            
             errorMessageRegister: ''
         }
     }
@@ -58,7 +59,7 @@ class Menu extends Component{
           console.log (error)
           this.setState({
             errorMessage: error.message,
-            errorCode: error.code
+           
           })
         })
     }
@@ -78,7 +79,7 @@ class Menu extends Component{
                 <Drawer.Navigator>
                     {this.state.loggedIn == false ?
                     <React.Fragment>
-                        <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>} />
+                        <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage}/>} />
                         <Drawer.Screen name='Registro' component={() => <Register register={(email, pass) => this.register(email, pass)} errorMessageRegister={this.state.errorMessageRegister}/>} />
                     </React.Fragment>
                     :
@@ -86,6 +87,7 @@ class Menu extends Component{
                         <Drawer.Screen name='Home' component={() => <Home />} />
                         <Drawer.Screen name='Perfil' component={() => <Perfil logout={()=> this.logout()} user={this.state.user}/>} />
                         <Drawer.Screen name='Buscador' component={() => <Buscador />} />
+                        <Drawer.Screen name='Agregar Post' component={(drawerProps) => <PostForm drawerProps={drawerProps} />} />
                     </React.Fragment>
                     }
                 </Drawer.Navigator>
