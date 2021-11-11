@@ -42,6 +42,7 @@ class Register extends Component{
                     <Text style={styles.textButton}>Registrate</Text>
                 </TouchableOpacity>
                 }
+                <Text style={styles.errorText}>{this.props.errorMessageRegister}</Text>
             </View>
             </View>
         )
@@ -58,6 +59,14 @@ const styles = StyleSheet.create({
         fontFamily:'Comic Sans',
         fontSize:"x-large",
         color:'#5B88FA'
+    },
+    errorText:{
+        textAlign:'center',
+        fontFamily:'Comic Sans',
+        fontSize:"large",
+        color:'red',
+        marginTop:1
+
     },
     container:{
         paddingHorizontal:10,

@@ -17,6 +17,7 @@ class Menu extends Component{
             user: "",
             errorMessage: '',
             errorCode:'',
+            errorMessageRegister: ''
         }
     }
     componentDidMount(){
@@ -36,7 +37,13 @@ class Menu extends Component{
                 loggedIn: true
             })
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            this.setState({
+                errorMessageRegister: error.message
+
+            })
+        })
     }
     login(email, pass){
         auth.signInWithEmailAndPassword(email, pass)
@@ -72,7 +79,7 @@ class Menu extends Component{
                     {this.state.loggedIn == false ?
                     <React.Fragment>
                         <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>} />
-                        <Drawer.Screen name='Registro' component={() => <Register register={(email, pass) => this.register(email, pass)}/>} />
+                        <Drawer.Screen name='Registro' component={() => <Register register={(email, pass) => this.register(email, pass)} errorMessageRegister={this.state.errorMessageRegister}/>} />
                     </React.Fragment>
                     :
                     <React.Fragment>
