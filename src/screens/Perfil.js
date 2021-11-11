@@ -47,16 +47,19 @@ class Perfil extends Component{
     }
    
     render(){
+        console.log(this.props)
         return(
+          
            <View>
-            <Text style={styles.input}>Usuario registrado: {this.props.user.user} </Text>
-            <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
-            <Text style={styles.input}>Ultimo ingreso: {this.props.user} </Text>
+
+             <Text style={styles.input}>Usuario registrado: {this.props.user.displayName} </Text> 
+             <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
+             <Text style={styles.input}>Ultimo ingreso: {this.props.user.metadata.creationTime} </Text> 
             
 
             <View style={styles.container}>
 
-<FlatList
+            <FlatList
 data={this.state.posteos}
 keyExtractor={post => post.id}
 renderItem={ ({item}) => <Post postData={item} />}
@@ -79,6 +82,7 @@ renderItem={ ({item}) => <Post postData={item} />}
        
   
         </View>
+        
 //cantidad de posteos de ese usuario
 //todos los posteos cargos por el usuario
 //permitir borrar los posteos

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Register from "./register";
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import {auth, db} from '../firebase/config'
-
+import Post from '../components/Post'
 
 class Home extends Component {
     constructor(){
@@ -36,7 +36,9 @@ render (){
 data={this.state.posteos}
 keyExtractor={post => post.id}
 renderItem={ ({item}) => <Post postData={item} />}
+
 />
+
 
 
         </View>

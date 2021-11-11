@@ -3,7 +3,10 @@ import React from 'react';
 import Menu from "./src/components/Menu"
 function App() {
   return (
-    <Menu/>
+    <React.Fragment>
+ <Menu/>
+    </React.Fragment>
+   
 
  
 
