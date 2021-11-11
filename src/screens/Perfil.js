@@ -15,6 +15,7 @@ class Perfil extends Component{
        
     } 
 
+
     componentDidMount() {
         db.collection('post').orderBy('createdAt','asc').onSnapshot(
             docs => {
@@ -44,8 +45,6 @@ class Perfil extends Component{
             })
         })
     }
-
-
    
     render(){
         return(
@@ -54,7 +53,8 @@ class Perfil extends Component{
             <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
             <Text style={styles.input}>Ultimo ingreso: {this.props.user} </Text>
             
-<View style={styles.container}>
+
+            <View style={styles.container}>
 
 <FlatList
 data={this.state.posteos}
@@ -62,7 +62,7 @@ keyExtractor={post => post.id}
 renderItem={ ({item}) => <Post postData={item} />}
 />
  </View>
-            
+
  <TouchableOpacity onPress={()=> this.borrarPosteo()}> 
     <Text style={styles.borrar} > Borrar Posteo </Text>
 </TouchableOpacity> 
