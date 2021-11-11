@@ -27,13 +27,12 @@ class Register extends Component{
                 console.log(post)
     
                 this.setState({
-                    posteos: post
+                    posteos: post,
+                    resultados: true
                 })
             }
         )
-        this.setState({
-            resultados: true
-        })
+        
         
         
 

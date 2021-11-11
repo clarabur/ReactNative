@@ -33,8 +33,8 @@ class Post extends Component{
         })
     }
     desLikear(){
-        db.collection("posts").doc(this.props.postData.data.id).update({
-            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser/email)
+        db.collection("posts").doc(this.props.postData.id).update({
+            likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
         })
         .then(()=>{
             this.setState({
@@ -42,6 +42,7 @@ class Post extends Component{
                 myLike: false
             })
         })
+        .catch(error => console.log(error))
     }
 
 
@@ -50,9 +51,9 @@ render(){
     return(
         <View style={styles.contanier}>
         <Text>user: {this.props.postData.data.owner} </Text>  
-        <Text>Likes: {this.s}</Text>
+        <Text>Likes: {this.state.likes}</Text>
         {
-            this.state.myLike == false ?
+            this.state.myLike === false ?
             <TouchableOpacity onPress={()=> this.likear()}>
                 <Text>Like</Text>
             </TouchableOpacity> :
