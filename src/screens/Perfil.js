@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase'
-
+import Post from "../components/Post";
 class Perfil extends Component{
     constructor(props){
         super(props);
@@ -17,7 +17,10 @@ class Perfil extends Component{
 
 
     componentDidMount() {
-        db.collection('post').orderBy('createdAt','asc').onSnapshot(
+        db.collection('posts')
+        .where ('owner', '==', this.props.user.email)
+        .orderBy('createdAt','asc')
+        .onSnapshot(
             docs => {
                 let post = []
                 docs.forEach(doc => {
@@ -55,7 +58,7 @@ class Perfil extends Component{
              <Text style={styles.input}>Usuario registrado: {this.props.user.displayName} </Text> 
              <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
              <Text style={styles.input}>Ultimo ingreso: {this.props.user.metadata.creationTime} </Text> 
-             <Text style={styles.input}>Cantidad total de posteos:  </Text> 
+             <Text style={styles.input}>Cantidad total de posteos:{this.state.posteos.length}  </Text> 
 
 
             <View style={styles.container}>
@@ -65,28 +68,26 @@ data={this.state.posteos}
 keyExtractor={post => post.id}
 renderItem={ ({item}) => <Post postData={item} />}
 />
- </View>
-
- <TouchableOpacity onPress={()=> this.borrarPosteo()}> 
+<TouchableOpacity onPress={()=> this.borrarPosteo()}> 
     <Text style={styles.borrar} > Borrar Posteo </Text>
 </TouchableOpacity> 
+ </View>
 
-
-
-            <TouchableOpacity  style={styles.enter} onPress={()=> this.props.logout(this.state.email, this.state.password)  }>
-              <Text style={styles.texto}>
-                Logout
-               </Text>
-            </TouchableOpacity>  
+ 
+ <TouchableOpacity  style={styles.enter} onPress={()=> this.props.logout(this.state.email, this.state.password)  }>
+<Text style={styles.texto}>
+  Logout
+  </Text>
+ </TouchableOpacity>  
 
 
        
   
         </View>
         
-//cantidad de posteos de ese usuario
-//todos los posteos cargos por el usuario
-//permitir borrar los posteos
+
+
+
 
 )
 
@@ -101,7 +102,8 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderRadius: 6,
         marginVertical: 10,
-        color:'#5B88FA'
+        color:'#5B88FA',
+        
 
     },
     
@@ -127,11 +129,12 @@ texto:{
 borrar: {
         
     color: '#fff',
-    padding:5,
+    padding: 5,
     backgroundColor :'#dc3545',
     alignSelf: 'flex-end',
     borderRadius: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
+    marginBottom: 10,
     
 },
 })
