@@ -16,7 +16,7 @@ class Menu extends Component{
             loggedIn: false,
             user: "",
             errorMessage: '',
-            errorCode:'',
+            
             errorMessageRegister: ''
         }
     }
@@ -58,7 +58,7 @@ class Menu extends Component{
           console.log (error)
           this.setState({
             errorMessage: error.message,
-            errorCode: error.code
+           
           })
         })
     }
@@ -78,7 +78,7 @@ class Menu extends Component{
                 <Drawer.Navigator>
                     {this.state.loggedIn == false ?
                     <React.Fragment>
-                        <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage} errorCode={this.state.errorCode}/>} />
+                        <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage}/>} />
                         <Drawer.Screen name='Registro' component={() => <Register register={(email, pass) => this.register(email, pass)} errorMessageRegister={this.state.errorMessageRegister}/>} />
                     </React.Fragment>
                     :

@@ -42,7 +42,8 @@ class Login extends Component{
                     <Text style={styles.textButton}>Login</Text>
                 </TouchableOpacity>
                 }
- 
+                 <Text style={styles.errorText}>{this.props.errorMessage}</Text>
+
  
  
  
@@ -79,6 +80,14 @@ const styles = StyleSheet.create({
         borderWidth:1,
         marginBottom:20
      
+    },
+    errorText:{
+        textAlign:'center',
+        fontFamily:'Comic Sans',
+        fontSize:"large",
+        color:'red',
+        marginTop:1
+
     },
     input:{
         height:20,
