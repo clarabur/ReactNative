@@ -7,6 +7,7 @@ import Login from "../screens/Login";
 import Home from '../screens/Home';
 import Perfil from "../screens/Perfil";
 import Buscador from "../screens/Buscador";
+import PostForm from "../screens/postForm";
 
 const Drawer = createDrawerNavigator();
 class Menu extends Component{
@@ -86,6 +87,7 @@ class Menu extends Component{
                         <Drawer.Screen name='Home' component={() => <Home />} />
                         <Drawer.Screen name='Perfil' component={() => <Perfil logout={()=> this.logout()} user={this.state.user}/>} />
                         <Drawer.Screen name='Buscador' component={() => <Buscador />} />
+                        <Drawer.Screen name='Agregar Post' component={(drawerProps) => <PostForm drawerProps={drawerProps} />} />
                     </React.Fragment>
                     }
                 </Drawer.Navigator>

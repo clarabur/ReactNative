@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config';
+import MyCamera from '../components/MyCamera'
 
 class PostForm extends Component{
     constructor(props){
@@ -36,7 +37,7 @@ class PostForm extends Component{
         return(
             <View>
                 {this.state.mostrarCamara ?
-                <Text />
+                <MyCamera imageUpload={(url) => this.imageUpload(url)}/>
                 :
                 <View>
                     <TextInput keyboardType='default' placeholder='Escribir aquí' onChangeText={text => this.setState({textoPost: text})} multiline value={this.state.textoPost} />
