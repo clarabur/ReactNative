@@ -39,12 +39,13 @@ class Perfil extends Component{
     }
     //borrar posteo
     borrarPosteo(){
-        db.collection("posts").doc(this.props.postData.id).delete({
-            posteos: firebase.firestore.FieldValue.arrayUnion(oneComment)
+        
+        db.collection("posts").doc(this.props.id).delete({
+            posteos: firebase.firestore.FieldValue.arrayUnion()
         })
         .then(()=>{
             this.setState({
-                posteos:this.props.postData.data.posteos.length
+                posteos: this.state.posteos.length 
             })
         })
     }
