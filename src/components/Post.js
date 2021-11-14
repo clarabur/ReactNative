@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
         borderRadius:4,
         borderWidth:1,
         borderColor:"#ccc",
-        width:'25%'
+        width:'15%'
     },
     textButton:{
-        color:'white'
+        color:'red'
     },
   
 
