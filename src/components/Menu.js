@@ -84,7 +84,7 @@ class Menu extends Component{
                     </React.Fragment>
                     :
                     <React.Fragment>
-                        <Drawer.Screen name='Home' component={() => <Home />} />
+                        <Drawer.Screen name='Home' component={() => <Home user={this.state.user} />} />
                         <Drawer.Screen name='Perfil' component={() => <Perfil logout={()=> this.logout()} user={this.state.user}/>} />
                         <Drawer.Screen name='Buscador' component={() => <Buscador />} />
                         <Drawer.Screen name='Agregar Post' component={(drawerProps) => <PostForm drawerProps={drawerProps} />} />
