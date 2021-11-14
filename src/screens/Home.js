@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import {auth, db} from '../firebase/config'
+<<<<<<< HEAD
 import Post from "../components/Post";
 
+=======
+import Post from '../components/Post'
+>>>>>>> 4bbf382edeea4d26c3566fab6a4d2ee1ea469658
 
 class Home extends Component {
     constructor(){
@@ -36,7 +40,9 @@ render (){
 data={this.state.posteos}
 keyExtractor={post => post.id}
 renderItem={ ({item}) => <Post postData={item} />}
+
 />
+
 
 
         </View>

@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase'
-
+import Post from "../components/Post";
 class Perfil extends Component{
     constructor(props){
         super(props);
@@ -15,8 +15,12 @@ class Perfil extends Component{
        
     } 
 
+
     componentDidMount() {
-        db.collection('post').orderBy('createdAt','asc').onSnapshot(
+        db.collection('posts')
+        .where ('owner', '==', this.props.user.email)
+        .orderBy('createdAt','desc')
+        .onSnapshot(
             docs => {
                 let post = []
                 docs.forEach(doc => {
@@ -35,53 +39,56 @@ class Perfil extends Component{
     }
     //borrar posteo
     borrarPosteo(){
-        db.collection("posts").doc(this.props.postData.id).delete({
-            posteos: firebase.firestore.FieldValue.arrayUnion(oneComment)
+        
+        db.collection("posts").doc(this.props.id).delete({
+            posteos: firebase.firestore.FieldValue.arrayUnion()
         })
         .then(()=>{
             this.setState({
-                posteos:this.props.postData.data.posteos.length
+                posteos: this.state.posteos.length 
             })
         })
     }
-
-
    
     render(){
+        console.log(this.props)
         return(
+          
            <View>
-            <Text style={styles.input}>Usuario registrado: {this.props.user.user} </Text>
-            <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
-            <Text style={styles.input}>Ultimo ingreso: {this.props.user} </Text>
-            
-<View style={styles.container}>
 
-<FlatList
+             <Text style={styles.input}>Usuario registrado: {this.props.user.displayName} </Text> 
+             <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
+             <Text style={styles.input}>Ultimo ingreso: {this.props.user.metadata.creationTime} </Text> 
+             <Text style={styles.input}>Cantidad total de posteos:{this.state.posteos.length}  </Text> 
+
+
+            <View style={styles.container}>
+
+            <FlatList
 data={this.state.posteos}
 keyExtractor={post => post.id}
 renderItem={ ({item}) => <Post postData={item} />}
 />
- </View>
-            
- <TouchableOpacity onPress={()=> this.borrarPosteo()}> 
+<TouchableOpacity onPress={()=> this.borrarPosteo()}> 
     <Text style={styles.borrar} > Borrar Posteo </Text>
 </TouchableOpacity> 
+ </View>
 
-
-
-            <TouchableOpacity  style={styles.enter} onPress={()=> this.props.logout(this.state.email, this.state.password)  }>
-              <Text style={styles.texto}>
-                Logout
-               </Text>
-            </TouchableOpacity>  
+ 
+ <TouchableOpacity  style={styles.enter} onPress={()=> this.props.logout(this.state.email, this.state.password)  }>
+<Text style={styles.texto}>
+  Logout
+  </Text>
+ </TouchableOpacity>  
 
 
        
   
         </View>
-//cantidad de posteos de ese usuario
-//todos los posteos cargos por el usuario
-//permitir borrar los posteos
+        
+
+
+
 
 )
 
@@ -96,7 +103,8 @@ const styles = StyleSheet.create({
         borderStyle: "solid",
         borderRadius: 6,
         marginVertical: 10,
-        color:'#5B88FA'
+        color:'#5B88FA',
+        
 
     },
     
@@ -122,11 +130,12 @@ texto:{
 borrar: {
         
     color: '#fff',
-    padding:5,
+    padding: 5,
     backgroundColor :'#dc3545',
     alignSelf: 'flex-end',
     borderRadius: 4,
-    paddingHorizontal: 8,
+    paddingHorizontal: 4,
+    marginBottom: 10,
     
 },
 })

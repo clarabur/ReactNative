@@ -48,10 +48,13 @@ class Post extends Component{
 
    
 render(){
+    console.log(this.props.postData)
     return(
         <View style={styles.contanier}>
-        <Text>user: {this.props.postData.data.owner} </Text>  
-        <Text>Likes: {this.state.likes}</Text>
+        <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
+        <Text style={styles.input}>Foto: {this.props.postData.data.foto}</Text>
+        <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
+        <Text style={styles.input}>Likes: {this.state.likes}</Text>
         {
             this.state.myLike === false ?
             <TouchableOpacity style={styles.likeButton} onPress={()=> this.likear()}>
@@ -62,7 +65,9 @@ render(){
                 <Text styles={styles.textButton}>Unlike</Text>
             </TouchableOpacity>
         }
-      
+        <TouchableOpacity >
+                <Text style={styles.input}>Comentar</Text>
+            </TouchableOpacity>
 
 
 
@@ -92,6 +97,10 @@ const styles = StyleSheet.create({
         color:'red'
     },
   
+input:{
+   
+    padding: 5,
+},
 
 })
 
