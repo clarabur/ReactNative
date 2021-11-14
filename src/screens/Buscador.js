@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Text, View, TouchableOpacity, TextInput, FlatList} from "react-native"
+import {Text, View, TouchableOpacity, TextInput, FlatList, ActivityIndicator} from "react-native"
 import {StyleSheet} from 'react-native'
 import Post from "../components/Post";
 import {db, auth} from '../firebase/config'
@@ -10,7 +10,8 @@ class Register extends Component{
         this.state={
             search: '',
             posteos: [], 
-            resultados: false
+            resultados: false, 
+            cargado: ''
 
         }
     }
@@ -25,6 +26,16 @@ class Register extends Component{
                     })
                 })
                 console.log(post)
+                if (post.length === 0) {
+                    this.setState({
+                        cargado: false
+                    })
+                    
+                } else{
+                    this.setState({
+                        cargado: true
+                    })
+                }
     
                 this.setState({
                     posteos: post,
@@ -63,7 +74,15 @@ class Register extends Component{
                 
                
             </View>
+            {
+                this.state.cargado === false ?
+                <ActivityIndicator></ActivityIndicator>:
+                <Text></Text>
+            }
+            
+           
             <View style={styles.subcontainer}>
+
                 { this.state.posteos.length === 0 && this.state.resultados ?
             
                     <Text style={styles.title}>No hay resultados</Text>:
@@ -77,6 +96,7 @@ class Register extends Component{
                 }
             
             </View>
+            
             </React.Fragment >
         )
     }
