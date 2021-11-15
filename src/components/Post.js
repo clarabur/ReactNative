@@ -83,31 +83,32 @@ render(){
         <View style={styles.contanier}>
              {
             this.props.postData.data.owner === this.props.user.email ?
-            <TouchableOpacity style={styles.borrar} onPress={()=> this.showAlert()}> 
-            <Text>Borrar posteo</Text>
-            </TouchableOpacity>
+            <View>
+                <TouchableOpacity style={styles.borrar} onPress={()=> this.showAlert()}> 
+                <Text>Borrar posteo</Text>
+                </TouchableOpacity>
+            
         
-        //copiar para el mensaje de error
-        <AwesomeAlert
-        show={this.state.showAlert}
-        showProgress ={false}
-        title='Borrar posteo'
-        message='Desea borrar el posteo'
-        closeOnTouchOutside={true}
-        closeOnHardwareBackPress={false}
-        showCancelButton={true}
-        showConfirmButton={true}
-        cancelText="No"
-        confirmText="Yes, borrarlo"
-        confirmButtonColor="#DD6B55"
-        onCancelPressed={() => {
-            this.hideAlert();
-        }}
-        onConfirmPressed={() => {
-            this.borrarPosteo();
-        }}
-        />
-
+                <AwesomeAlert
+                show={this.state.showAlert}
+                showProgress ={false}
+                title='Borrar posteo'
+                message='Desea borrar el posteo'
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="No"
+                confirmText="Yes, borrarlo"
+                confirmButtonColor="#DD6B55"
+                onCancelPressed={() => {
+                    this.hideAlert();
+                }}
+                onConfirmPressed={() => {
+                    this.borrarPosteo();
+                }}
+                />
+            </View>
 
       
            :
