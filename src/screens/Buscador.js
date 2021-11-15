@@ -16,6 +16,9 @@ class Register extends Component{
         }
     }
     buscar(){
+        this.setState({
+            cargado: false
+        })
         db.collection('posts').where('owner', '==', this.state.search).orderBy('createdAt', 'asc').onSnapshot(
             docs => {
                 let post = []
@@ -26,20 +29,10 @@ class Register extends Component{
                     })
                 })
                 console.log(post)
-                if (post.length === 0) {
-                    this.setState({
-                        cargado: false
-                    })
-                    
-                } else{
-                    this.setState({
-                        cargado: true
-                    })
-                }
-    
                 this.setState({
                     posteos: post,
-                    resultados: true
+                    resultados: true,
+                    cargado: true
                 })
             }
         )
