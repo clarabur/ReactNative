@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, Flat
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase'
 import Post from "../components/Post";
-import AwesomeAlert from 'react-native-awesome-alerts';
+
 
 class Perfil extends Component{
     constructor(props){
@@ -51,19 +51,7 @@ class Perfil extends Component{
         })
 
     }
-    //borrar posteo
-    borrarPosteo(){
-        db.collection("posts").doc(this.props.id).delete({
-            posteos: firebase.firestore.FieldValue.arrayUnion()
-        })
-        .then(()=>{
-            this.setState({
-                posteos: this.state.posteos.length 
-            })
-        })
-        
     
-    }
     render(){
         console.log(this.props)
         return(
@@ -84,30 +72,10 @@ class Perfil extends Component{
                 keyExtractor={post => post.id}
                 renderItem={ ({item}) => <Post user={this.props.user} postData={item} />}
                 />
-                 <TouchableOpacity style={styles.borrar} onPress={()=> this.showAlert()}> 
-                    <Text>Borrar posteo</Text>
-                    </TouchableOpacity>
+                
         
                 
-                <AwesomeAlert
-                show={this.state.showAlert}
-                showProgress ={false}
-                title='Borrar posteo'
-                message='Desea borrar el posteo'
-                closeOnTouchOutside={true}
-                closeOnHardwareBackPress={false}
-                showCancelButton={true}
-                showConfirmButton={true}
-                cancelText="No"
-                confirmText="Yes, borrarlo"
-                confirmButtonColor="#DD6B55"
-                onCancelPressed={() => {
-                    this.hideAlert();
-                }}
-                onConfirmPressed={() => {
-                    this.borrarPosteo();
-                }}
-                />
+               
                 
                    
             </View>
