@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, FlatList} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, FlatList, Image} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase'
 import AwesomeAlert from 'react-native-awesome-alerts';
@@ -114,9 +114,9 @@ render(){
            :
            <Text></Text>
         }
-           
+        
+        <Image style={styles.foto} source={{uri: this.props.postData.data.foto}} resizeMode='contain'/>
         <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
-        <Text style={styles.input}>Foto: {this.props.postData.data.foto}</Text>
         <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
         <Text style={styles.input}>Likes: {this.state.likes}</Text>
         {
@@ -155,25 +155,29 @@ const styles = StyleSheet.create({
         borderRadius:4,
         borderWidth:1,
         borderColor:"#ccc",
-        width:'15%'
+        width:'15%',
     },
     textButton:{
         color:'red'
     },
   
-input:{
-   
-    padding: 5,
-},
-borrar: {    
-    color: '#fff',
-    padding: 5,
-    backgroundColor :'#dc3545',
-    alignSelf: 'flex-end',
-    borderRadius: 4,
-    paddingHorizontal: 4,
-    marginBottom: 10,    
-}
+    input:{
+        padding: 5,
+    },
+    borrar: {    
+        color: '#fff',
+        padding: 5,
+        backgroundColor :'#dc3545',
+        alignSelf: 'flex-end',
+        borderRadius: 4,
+        paddingHorizontal: 4,
+        marginBottom: 10,    
+    },
+    foto: {
+        flex: 1,
+        height: 300,
+        marginBottom: 8
+    }
 
 
 })
