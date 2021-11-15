@@ -40,17 +40,7 @@ class Perfil extends Component{
             }
         )
     }
-    showAlert(){
-        this.setState({
-            showAlert: true
-        })
-    }
-    hideAlert(){
-        this.setState({
-            showAlert: false
-        })
 
-    }
     
     render(){
         console.log(this.props)
