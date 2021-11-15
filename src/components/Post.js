@@ -62,31 +62,30 @@ class Post extends Component{
     }
     //borrar posteo
     borrarPosteo(){
-        db.collection("posts").doc(this.props.postData.id).delete({
-            posteos: firebase.firestore.FieldValue.arrayUnion()
-        })
+        db.collection("posts").doc(this.props.postData.id).delete()
         .then(()=>{
-            
+
+           console.log( this.props.postData.data)
         })
-        
+        .catch(error => console.log(error))
     
     }
   
 
    
 render(){
-    console.log(this.props.postData)
+   // console.log(this.props.postData)
     return(
         <View style={styles.contanier}>
              {
             this.props.postData.data.owner === this.props.user.email ?
-            <View>
+            <React.Fragment>
                 <TouchableOpacity style={styles.borrar} onPress={()=> this.showAlert()}> 
                 <Text>Borrar posteo</Text>
                 </TouchableOpacity>
             
-        
-                <AwesomeAlert
+            <View>
+                 <AwesomeAlert
                 show={this.state.showAlert}
                 showProgress ={false}
                 title='Borrar posteo'
@@ -104,9 +103,9 @@ render(){
                 onConfirmPressed={() => {
                     this.borrarPosteo();
                 }}
-                />
+                />  
             </View>
-
+            </React.Fragment>
       
            :
            <Text></Text>
@@ -115,7 +114,7 @@ render(){
         <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
         <Text style={styles.input}>Foto: {this.props.postData.data.foto}</Text>
         <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
-        <Text style={styles.input}>Likes: {this.state.likes}</Text>
+        <Text style={styles.input}>Likes: {this.state.likes} </Text>
         {
             this.state.myLike === false ?
             <TouchableOpacity style={styles.likeButton} onPress={()=> this.likear()}>
