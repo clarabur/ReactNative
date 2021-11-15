@@ -8,7 +8,7 @@ class PostForm extends Component{
         super(props)
         this.state = {
             textoPost: '',
-            mostrarCamara: '',
+            mostrarCamara: true,
             url: ''
         }
     }
@@ -35,20 +35,68 @@ class PostForm extends Component{
     }
     render(){
         return(
-            <View>
+            <View style={styles.containerView}>
                 {this.state.mostrarCamara ?
                 <MyCamera imageUpload={(url) => this.imageUpload(url)}/>
                 :
-                <View>
-                    <TextInput keyboardType='default' placeholder='Escribir aquí' onChangeText={text => this.setState({textoPost: text})} multiline value={this.state.textoPost} />
-                    <TouchableOpacity onPress={() => this.submitPost()}>
-                        <Text>Guardar</Text>
+                <View style={styles.container}>
+                    <TextInput style={styles.field} keyboardType='default' placeholder='Escribir aquí' onChangeText={text => this.setState({textoPost: text})} multiline value={this.state.textoPost} />
+                    {this.state.textoPost == '' ? 
+                    <TouchableOpacity style={styles.botonUnable} onPress={() => this.submitPost()}>
+                        <Text style={styles.textoBoton}>Guardar</Text>
                     </TouchableOpacity>
+                    :
+                    <TouchableOpacity style={styles.boton} onPress={() => this.submitPost()}>
+                        <Text style={styles.textoBoton}>Guardar</Text>
+                    </TouchableOpacity>
+                    }
+                    
                 </View>
                 }
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        paddingHorizontal: 10,
+        marginTop: 20
+    },
+    containerView: {
+        flex: 1
+    },
+    field: {
+        height: 100,
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderStyle: 'solid',
+        borderRadius: 6,
+        marginVertical: 10
+    },
+    boton: {
+        backgroundColor:"#5B88FA",
+        paddingHorizontal:10,
+        paddingVertical:6,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc"
+    },
+    botonUnable: {
+        backgroundColor:"#9DCFFC",
+        paddingHorizontal:10,
+        paddingVertical:6,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc"
+    },
+    textoBoton: {
+        color: '#fff'
+    }
+})
 
 export default PostForm
