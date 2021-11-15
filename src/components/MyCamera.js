@@ -60,25 +60,25 @@ class MyCamera extends Component{
     }
     render(){
         return(
-            <View>
+            <View style={styles.container}>
                 {this.state.permission ?
                     this.state.mostrarCamara == false ?
                     <React.Fragment>
-                        <Image source={{uri: this.state.foto}}/>
-                        <View>
-                            <TouchableOpacity onPress={() => this.guardarFoto()}>
-                                <Text>Aceptar</Text>
+                        <Image style={styles.cameraBody} source={{uri: this.state.foto}}/>
+                        <View style={styles.juntos}>
+                            <TouchableOpacity style={styles.botonJunto} onPress={() => this.guardarFoto()}>
+                                <Text style={styles.textoBoton}>Aceptar</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => this.borrarFoto()}>
-                                <Text>Rechazar</Text>
+                            <TouchableOpacity style={styles.botonJunto} onPress={() => this.borrarFoto()}>
+                                <Text style={styles.textoBoton}>Rechazar</Text>
                             </TouchableOpacity>
                         </View>
                     </React.Fragment>
                     :
-                    <View>
-                        <Camera type={Camera.Constants.Type.back} ref={reference => this.camera = reference}/>
-                        <TouchableOpacity onPress={() => this.sacarFoto()}>
-                            <Text>Sacar foto</Text>
+                    <View style={styles.container}>
+                        <Camera style={styles.cameraBody} type={Camera.Constants.Type.back} ref={reference => this.camera = reference}/>
+                        <TouchableOpacity style={styles.boton} onPress={() => this.sacarFoto()}>
+                            <Text style={styles.textoBoton}>Sacar foto</Text>
                         </TouchableOpacity>
                     </View>
                 :
@@ -88,5 +88,49 @@ class MyCamera extends Component{
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
+    cameraBody: {
+        flex: 7
+    },
+    boton: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        height: 2,
+        flex: 0.5,
+        backgroundColor:"#5B88FA",
+        paddingHorizontal:10,
+        paddingVertical:1,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc"
+    },
+    textoBoton: {
+        color: '#fff'
+    },
+    juntos: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'row'
+    },
+    botonJunto: {
+        justifyContent: 'center',
+        alignContent: 'center',
+        height: 30,
+        flex: 0.5,
+        backgroundColor:"#5B88FA",
+        paddingHorizontal:10,
+        paddingVertical:1,
+        textAlign:"center",
+        borderRadius:4,
+        borderWidth:1,
+        borderColor:"#ccc",
+        width: '48%'
+    }
+})
 
 export default MyCamera
