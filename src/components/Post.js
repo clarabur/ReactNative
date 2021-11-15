@@ -9,7 +9,6 @@ class Post extends Component{
         super(props);
         this.state = {
            
-            posteos:[],
             showAlert : false,
            likes: 0,
            myLike: false
@@ -67,9 +66,7 @@ class Post extends Component{
             posteos: firebase.firestore.FieldValue.arrayUnion()
         })
         .then(()=>{
-            this.setState({
-                posteos: this.state.posteos.length
-            })
+            
         })
         
     
