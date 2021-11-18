@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, FlatList, Im
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase'
 import AwesomeAlert from 'react-native-awesome-alerts';
+import Likear from './likear'
 
 class Post extends Component{
     constructor(props){
@@ -119,16 +120,8 @@ render(){
         <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
         <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
         <Text style={styles.input}>Likes: {this.state.likes} </Text>
-        {
-            this.state.myLike === false ?
-            <TouchableOpacity style={styles.likeButton} onPress={()=> this.likear()}>
-                <Text styles={styles.textButton}>Like</Text>
-            </TouchableOpacity> :
-
-            <TouchableOpacity style={styles.likeButton} onPress={()=>this.desLikear()}>
-                <Text styles={styles.textButton}>Unlike</Text>
-            </TouchableOpacity>
-        }
+        <Likear likear={()=>this.likear()} desLikear={()=>this.desLikear()} like={this.state.likes} myLike={this.state.myLike}/>
+       
         
         <TouchableOpacity onPress={() => this.showModal()}>
             <Text style={styles.input}>Ver/ agregar comentarios</Text>
