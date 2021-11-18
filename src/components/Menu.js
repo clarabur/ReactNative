@@ -31,12 +31,15 @@ class Menu extends Component{
             }
         })
     }
-    register(email, pass){
+    register(email, pass, userName ){
         auth.createUserWithEmailAndPassword(email, pass)
-        .then((response)=>{
+        .then((res)=>{
             this.setState({
                 loggedIn: true
+           
             })
+            res.user.updateProfile({
+                displayName: userName})
         })
         .catch(error => {
             console.log(error)
@@ -80,7 +83,7 @@ class Menu extends Component{
                     {this.state.loggedIn == false ?
                     <React.Fragment>
                         <Drawer.Screen name='Login' component={() => <Login login={(email, pass) => this.login(email, pass)} errorMessage={this.state.errorMessage}/>} />
-                        <Drawer.Screen name='Registro' component={() => <Register register={(email, pass) => this.register(email, pass)} errorMessageRegister={this.state.errorMessageRegister}/>} />
+                        <Drawer.Screen name='Registro' component={() => <Register register={(email, pass, userName) => this.register(email, pass, userName)} errorMessageRegister={this.state.errorMessageRegister}/>} />
                     </React.Fragment>
                     :
                     <React.Fragment>
