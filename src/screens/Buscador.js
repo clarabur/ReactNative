@@ -11,13 +11,44 @@ class Register extends Component{
             search: '',
             posteos: [], 
             resultados: false, 
-            cargado: ''
+            cargado: '',
+            ordenarAsc: true,
+            filtroOrdenar: 'desc'
 
         }
     }
     buscar(){
         this.setState({
             cargado: false
+        })
+        db.collection('posts').where('owner', '==', this.state.search).orderBy('createdAt', this.state.filtroOrdenar).onSnapshot(
+            docs => {
+                let post = []
+                docs.forEach(doc => {
+                    post.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    })
+                })
+                console.log(this.state.search)
+                this.setState({
+                    posteos: post,
+                    resultados: true,
+                    cargado: true,
+                    ordenarAsc: true
+                })
+                console.log(this.state.cargado)
+            }
+        )
+        
+        
+        
+
+    }
+    ascendente(){
+        this.setState({
+            filtroOrdenar: 'asc',
+            ordenarAsc: false
         })
         db.collection('posts').where('owner', '==', this.state.search).orderBy('createdAt', 'asc').onSnapshot(
             docs => {
@@ -36,9 +67,29 @@ class Register extends Component{
                 })
             }
         )
-        
-        
-        
+    }
+    descentente(){
+        this.setState({
+            filtroOrdenar: 'desc',
+            ordenarAsc: true
+        })
+        db.collection('posts').where('owner', '==', this.state.search).orderBy('createdAt', 'desc').onSnapshot(
+            docs => {
+                let post = []
+                docs.forEach(doc => {
+                    post.push({
+                        id: doc.id,
+                        data: doc.data(),
+                    })
+                })
+                console.log(post)
+                this.setState({
+                    posteos: post,
+                    resultados: true,
+                    cargado: true
+                })
+            }
+        )
 
     }
     
@@ -47,7 +98,7 @@ class Register extends Component{
             <React.Fragment >
             <View style={styles.container}>
                 <Text style={styles.title}>Buscar Posts</Text>
-                <Text>{this.state.resultados}</Text>
+                
                 <TextInput 
                         style={styles.input}
                         keyboardType='default'
@@ -72,6 +123,7 @@ class Register extends Component{
                 <ActivityIndicator></ActivityIndicator>:
                 <Text></Text>
             }
+
             
            
             <View style={styles.subcontainer}>
@@ -79,12 +131,26 @@ class Register extends Component{
                 { this.state.posteos.length === 0 && this.state.resultados ?
             
                     <Text style={styles.title}>No hay resultados</Text>:
-                   
+
+                    <View>
+                        <View style={styles.containerButton}>
+                        {
+                            this.state.ordenarAsc === true ?
+                            <TouchableOpacity style={styles.button} onPress={()=>this.ascendente()}>
+                                <Text style={styles.textButton}>Ascendente</Text>
+                            </TouchableOpacity> :
+                             <TouchableOpacity style={styles.button} onPress={()=>this.descentente()}>
+                             <Text style={styles.textButton}>Descendente</Text>
+                             </TouchableOpacity> 
+                        }
+                        </View>
+                    
                     <FlatList
                     data={this.state.posteos}
                     keyExtractor={post => post.id}
-                    renderItem={ ({item}) => <Post postData={item} />}
+                    renderItem={ ({item}) => <Post user={this.props.user} postData={item} />}
                     />
+                    </View>
                     
                 }
             
@@ -152,6 +218,11 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderColor:"#ccc"
 
+    },
+    containerButton:{
+        width:'50%',
+        marginHorizontal:'25%',
+        marginBottom:20
     }
 })
 
