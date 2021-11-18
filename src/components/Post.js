@@ -97,7 +97,7 @@ class Post extends Component{
         })
     }
   
-
+    
    
 render(){
    // console.log(this.props.postData)
@@ -109,34 +109,12 @@ render(){
                 <TouchableOpacity style={styles.borrar} onPress={()=> this.showAlert()}> 
                 <Text>Borrar posteo</Text>
                 </TouchableOpacity>
-            
-            <View>
-                 <AwesomeAlert
-                show={this.state.showAlert}
-                showProgress ={false}
-                title='Borrar posteo'
-                message='Desea borrar el posteo'
-                closeOnTouchOutside={true}
-                closeOnHardwareBackPress={false}
-                showCancelButton={true}
-                showConfirmButton={true}
-                cancelText="No"
-                confirmText="Yes, borrarlo"
-                confirmButtonColor="#DD6B55"
-                onCancelPressed={() => {
-                    this.hideAlert();
-                }}
-                onConfirmPressed={() => {
-                    this.borrarPosteo();
-                }}
-                />  
-            </View>
             </React.Fragment>
       
            :
            <Text></Text>
         }
-
+ 
         <Image style={styles.foto} source={{uri: this.props.postData.data.foto}} resizeMode='contain'/>
         <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
         <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
@@ -190,7 +168,26 @@ render(){
             :
             <Text></Text>
         }
-
+        <AwesomeAlert
+            style={{"zIndex":999}}
+            show={this.state.showAlert}
+            showProgress ={false}
+            title='Borrar posteo'
+            message='Desea borrar el posteo'
+            closeOnTouchOutside={true}
+            closeOnHardwareBackPress={false}
+            showCancelButton={true}
+            showConfirmButton={true}
+            cancelText="No"
+            confirmText="Yes, borrarlo"
+            confirmButtonColor="#DD6B55"
+            onCancelPressed={() => {
+                this.hideAlert();
+            }}
+            onConfirmPressed={() => {
+                this.borrarPosteo();
+            }}
+        />         
 
 
         </View>
