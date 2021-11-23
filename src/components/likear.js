@@ -17,12 +17,23 @@ class Likear extends Component{
             <View>
              {
             this.props.myLike === false ?
-            <TouchableOpacity style={styles.likeButton} onPress={()=> this.props.likear()}>
-                <Text styles={styles.textButton}>Like</Text>
+            <TouchableOpacity style={styles.containLike} onPress={()=> this.props.likear()}>
+                
+                <Image style={styles.iconLike}
+                        source={{uri:'https://img.icons8.com/ios/48/000000/like--v1.png'}}
+                        resizeMode='contain'
+                        
+                 />
+                
             </TouchableOpacity> :
 
-            <TouchableOpacity style={styles.likeButton} onPress={()=>this.props.desLikear()}>
-                <Text styles={styles.textButton}>Unlike</Text>
+            <TouchableOpacity style={styles.containLike} onPress={()=>this.props.desLikear()}>
+                <Image style={styles.iconLike}
+                        source={{uri:'https://img.icons8.com/color/48/000000/like--v1.png'}}
+                        resizeMode='contain'
+                        
+                 />
+              
             </TouchableOpacity>
             }
             </View>
@@ -43,5 +54,15 @@ const styles = StyleSheet.create({
     textButton:{
         color:'red'
     },
+    iconLike:{
+        height:50,
+        marginLeft:0
+    },
+    containLike:{
+        width:40
+       
+        
+    }
 })
+
 export default Likear
