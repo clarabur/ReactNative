@@ -23,7 +23,7 @@ class Likear extends Component{
                         source={{uri:'https://img.icons8.com/ios/48/000000/like--v1.png'}}
                         resizeMode='contain'
                         
-                 />
+                />
                 
             </TouchableOpacity> :
 

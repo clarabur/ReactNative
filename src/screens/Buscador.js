@@ -101,7 +101,7 @@ class Register extends Component{
                 
                 <TextInput 
                         style={styles.input}
-                        keyboardType='default'
+                        keyboardType='email-address'
                         placeholder='search'
                         onChangeText={ text => this.setState({search: text})}/>
 

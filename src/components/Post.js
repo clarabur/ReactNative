@@ -120,6 +120,8 @@ render(){
         <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
         <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
         <Text style={styles.input}>Likes: {this.state.likes} </Text>
+        
+        {/* likear componente */}
         <Likear likear={()=>this.likear()} desLikear={()=>this.desLikear()} like={this.state.likes} myLike={this.state.myLike}/>
        
         
