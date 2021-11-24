@@ -13,7 +13,8 @@ class Post extends Component{
             likes: 0,
             myLike: false,
             showModal: false,
-            comentario: ''
+            comentario: '',
+            user: this.props.user
         }
     }
     componentDidMount(){
@@ -101,7 +102,7 @@ class Post extends Component{
     
    
 render(){
-   // console.log(this.props.postData)
+   console.log(this.props.postData)
     return(
         <View style={styles.contanier}>
              {
@@ -115,10 +116,10 @@ render(){
            :
            <Text></Text>
         }
- 
+         
         <Image style={styles.foto} source={{uri: this.props.postData.data.foto}} resizeMode='contain'/>
+        <Text style={styles.input}>user: {this.props.postData.data.owner} </Text> 
         <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
-        <Text style={styles.input}>user: {this.props.postData.data.owner} </Text>  
         <Text style={styles.input}>Likes: {this.state.likes} </Text>
         
         {/* likear componente */}
@@ -214,6 +215,7 @@ const styles = StyleSheet.create({
     input:{
         padding: 5,
     },
+    
     borrar: {    
         color: '#fff',
         padding: 5,
