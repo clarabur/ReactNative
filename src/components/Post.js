@@ -190,7 +190,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor:"#ccc",
-        width: 215
+        width: 215,
+        marginTop: 5
     }
 })
 

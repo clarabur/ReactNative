@@ -30,7 +30,7 @@ class ComentarModal extends Component{
             <View>
                 {
                     this.props.showModal ?
-                    <Modal style={styles.containerModal} visible={this.props.showModal} animationType='slide' transparent={false}>
+                    <Modal style={styles.containerModal} visible={this.props.showModal} animationType='slide' transparent={true}>
                         <View style={styles.modal}>
                             <TouchableOpacity onPress={() => this.props.ocultar()}>
                                 <Text style={styles.cerrarModal}>X</Text>
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         boxShadow: '0 0 0 #ccc',
         marginTop: 20,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: 'white'
     },
     cerrarModal: {
         color: '#fff',
@@ -104,7 +105,9 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical: 10,
         backgroundColor:'#EEECEC',
-        marginTop: 20
+        marginTop: 20,
+        width: '92%',
+        alignSelf: 'center'
     },
     comentarNo: {
         backgroundColor:"#9DCFFC",
@@ -114,7 +117,9 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor:"#ccc"
+        borderColor:"#ccc",
+        width: '92%',
+        alignSelf: 'center'
     },
     comentar: {
         backgroundColor:"#5B88FA",
@@ -124,19 +129,23 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor:"#ccc"
+        borderColor:"#ccc",
+        width: '92%',
+        alignSelf: 'center'
     },
     textoBoton: {
         color: '#fff'
     },
     modal: {
-        width: '80%',
+        width: '90%',
         borderRadius:4,
         borderColor: "#ccc",
         borderWidth: 1,
         padding: 10,
         alignSelf: 'center',
-        marginTop: 30
+        marginTop: 80,
+        backgroundColor: 'white',
+        height: 'fit-content'
     },
     tt: {
         marginVertical: 2
