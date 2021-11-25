@@ -156,7 +156,7 @@ class Register extends Component{
             
             </View>
             
-            </React.Fragment >
+            </React.Fragment>
         )
     }
 }
