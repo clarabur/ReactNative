@@ -59,7 +59,7 @@ class Perfil extends Component{
 
                 <FlatList
                 data={this.state.posteos}
-                keyExtractor={post => post.id}  //POST ES UN parametro
+                keyExtractor={post => post.id}  
                 renderItem={ ({item}) => <Post user={this.props.user} postData={item} />}
                 />
                 
