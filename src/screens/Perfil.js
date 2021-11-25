@@ -52,14 +52,14 @@ class Perfil extends Component{
              <Text style={styles.input}>Usuario registrado: {this.props.user.displayName} </Text> 
              <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
              <Text style={styles.input}>Ultimo ingreso: {this.props.user.metadata.creationTime} </Text> 
-             <Text style={styles.input}>Cantidad total de posteos:{this.state.posteos.length}  </Text> 
+             <Text style={styles.input}>Cantidad total de posteos: {this.state.posteos.length}  </Text> 
 
 
             <View style={styles.container}>
 
                 <FlatList
                 data={this.state.posteos}
-                keyExtractor={post => post.id}
+                keyExtractor={post => post.id}  
                 renderItem={ ({item}) => <Post user={this.props.user} postData={item} />}
                 />
                 
@@ -95,7 +95,8 @@ class Perfil extends Component{
 const styles = StyleSheet.create({
     page: {
         flex:1,
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        backgroundColor: 'white',
     },
     input:{
         height:20,
@@ -126,15 +127,7 @@ texto:{
     color: '#fff',
 },
 
-borrar: {    
-    color: '#fff',
-    padding: 5,
-    backgroundColor :'#dc3545',
-    alignSelf: 'flex-end',
-    borderRadius: 4,
-    paddingHorizontal: 4,
-    marginBottom: 10,    
-}
+
 
 })
 
