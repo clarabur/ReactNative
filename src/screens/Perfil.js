@@ -52,7 +52,7 @@ class Perfil extends Component{
              <Text style={styles.input}>Usuario registrado: {this.props.user.displayName} </Text> 
              <Text style={styles.input}>Email registrado: {this.props.user.email} </Text>
              <Text style={styles.input}>Ultimo ingreso: {this.props.user.metadata.creationTime} </Text> 
-             <Text style={styles.input}>Cantidad total de posteos:{this.state.posteos.length}  </Text> 
+             <Text style={styles.input}>Cantidad total de posteos: {this.state.posteos.length}  </Text> 
 
 
             <View style={styles.container}>
