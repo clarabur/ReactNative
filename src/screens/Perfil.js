@@ -95,7 +95,8 @@ class Perfil extends Component{
 const styles = StyleSheet.create({
     page: {
         flex:1,
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        backgroundColor: 'white',
     },
     input:{
         height:20,
@@ -126,15 +127,7 @@ texto:{
     color: '#fff',
 },
 
-borrar: {    
-    color: '#fff',
-    padding: 5,
-    backgroundColor :'#dc3545',
-    alignSelf: 'flex-end',
-    borderRadius: 4,
-    paddingHorizontal: 4,
-    marginBottom: 10,    
-}
+
 
 })
 

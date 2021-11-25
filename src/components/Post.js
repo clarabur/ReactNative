@@ -90,7 +90,7 @@ class Post extends Component{
                 this.props.postData.data.owner === this.props.user.email ?
                 <React.Fragment>
                     <TouchableOpacity style={styles.borrar} onPress={()=> this.showAlert()}> 
-                    <Text>Borrar posteo</Text>
+                    <Text style={styles.botonBorrado} >Borrar Posteo</Text>
                     </TouchableOpacity>
                 </React.Fragment>
         
@@ -99,7 +99,7 @@ class Post extends Component{
                 }
             
                 <Image style={styles.foto} source={{uri: this.props.postData.data.foto}} resizeMode='contain'/>
-                <Text style={styles.input}>user: {this.props.postData.data.owner} </Text> 
+                <Text style={styles.input}>User: {this.props.postData.data.owner} </Text> 
                 <Text style={styles.input}>Comentario: {this.props.postData.data.texto}</Text>
                 <Text style={styles.input}>Likes: {this.state.likes} </Text>
                 
@@ -157,6 +157,10 @@ const styles = StyleSheet.create({
     },
     textButton:{
         color:'red'
+    },
+    botonBorrado:{
+        color: 'white',
+
     },
   
     input:{
