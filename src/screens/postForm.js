@@ -40,6 +40,7 @@ class PostForm extends Component{
                 <MyCamera imageUpload={(url) => this.imageUpload(url)}/>
                 :
                 <View style={styles.container}>
+                    <Text style={styles.title}>Agregar texto al posteo</Text>
                     <TextInput style={styles.field} keyboardType='default' placeholder='Escribir aquí' onChangeText={text => this.setState({textoPost: text})} multiline value={this.state.textoPost} />
                     {this.state.textoPost == '' ? 
                     <TouchableOpacity style={styles.botonUnable} onPress={() => this.submitPost()}>
@@ -65,6 +66,13 @@ const styles = StyleSheet.create({
     },
     containerView: {
         flex: 1
+    },
+    title:{
+        textAlign:'center',
+        fontFamily:'Comic Sans',
+        fontSize:"x-large",
+        color:'#5B88FA',
+        marginBottom: 40
     },
     field: {
         height: 100,
